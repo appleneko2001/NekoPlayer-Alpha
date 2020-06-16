@@ -21,10 +21,10 @@ UI are referenced from Google Play music.
 * Auto-save changes of playlist after close window or add/delete items on playlist
 
 ## Compile
-> For compile you need .Net Core 3.0, MaterialDesignInXAML (Modified), Visual Studio 2019
-- Download repository and unpack it to anywhere
+> For compile you need .Net Core 3.0, MaterialDesignInXAML (Modified) and Visual Studio 2019
+- Download this repository and modded MaterialDesign toolkit and unpack it both
 - Open solution file by Visual Studio 2019
-- Re-reference MaterialDesignInXAML project
+- Remove old MaterialDesignInXAML project and re-add unpacked toolkit project
 - Select Release solution configuration and Run (or Compile)
 
 ## How to use
