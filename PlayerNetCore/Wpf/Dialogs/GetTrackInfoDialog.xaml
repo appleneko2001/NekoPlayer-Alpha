@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="NekoPlayer.Wpf.Dialogs.GetTrackInfoDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NekoPlayer.Wpf.Dialogs"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:commands="NekoPlayer.Wpf.Commands"
+             xmlns:converter="clr-namespace:NekoPlayer.Wpf.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid x:Name="Root" >
+        <Grid.Resources>
+            <converter:InverseBooleanConverter x:Key="InvertBoolConverter"/>
+        </Grid.Resources>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top" Margin="16">
+                <TextBlock Margin="16" Style="{StaticResource Headline6TextBlock}" Text="{Binding Converter={StaticResource LanguagePack}, ConverterParameter={StaticResource Dialog_GetTrackinfo_Header}, FallbackValue={StaticResource Dialog_GetTrackinfo_Header}}"/>
+                <DockPanel>
+                    <TextBlock Margin="4" Text="{Binding Converter={StaticResource LanguagePack},
+                        ConverterParameter={StaticResource Dialog_GetTrackinfo_Database_Source}}" 
+                               Style="{StaticResource Body1TextBlock}" VerticalAlignment="Center"/>
+                    <ComboBox Margin="8,4" DockPanel.Dock="Right"  SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{Binding Path=AvaliableApisString}"
+                              Text="Select one source"/>
+                </DockPanel>
+                <DockPanel Margin="4,4" >
+                    <Button HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" UseLayoutRounding="False" Margin="0,0,8,0"
+                           Command="{Binding StartSearchCommand}" Style="{StaticResource FlatButton}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Search" Margin="0,4,4,4"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Converter={StaticResource LanguagePack},
+                                ConverterParameter={StaticResource Common_Search}}" Margin="0"/>
+                        </StackPanel>
+                    </Button>
+                    <TextBox VerticalContentAlignment="Stretch" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="4,0" 
+                                 Text="{Binding Keywords}">
+                        <materialDesign:HintAssist.Hint>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Search" Margin="4,0"/>
+                                <TextBlock Text="{Binding Converter={StaticResource LanguagePack},
+                                        ConverterParameter='Keywords'}" Margin="0,-2,0,0" />
+                            </StackPanel>
+                        </materialDesign:HintAssist.Hint>
+                    </TextBox>
+                </DockPanel>
+            </StackPanel>
+            <DockPanel  DockPanel.Dock="Bottom" Margin="0,8">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
+                    <!--Button Content="{Binding Converter={StaticResource LanguagePack}, ConverterParameter={StaticResource Dialog_GetTrackinfo_Write_To_File}}"  Command="{Binding ReturnResultCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="8,0" Tag="WriteToFile"/-->
+                    <Button VerticalAlignment="Center"  Style="{StaticResource FlatButton}" Content="{Binding Converter={StaticResource LanguagePack}, ConverterParameter={StaticResource Common_OK}}"  Command="{Binding ReturnResultCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="8,0"/>
+                    <Button VerticalAlignment="Center"  Style="{StaticResource FlatButton}" IsEnabled="{Binding Path=Working, Converter={StaticResource InvertBoolConverter}}" Content="{Binding Converter={StaticResource LanguagePack}, ConverterParameter={StaticResource Common_Cancel}}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Margin="8,0"/>
+                </StackPanel>
+                <TextBlock Text="{Binding MessageText}" TextTrimming="CharacterEllipsis" Margin="16,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </DockPanel>
+            <ListView Margin="16" ItemsSource="{Binding SearchResult.Results}" IsEnabled="{Binding Path=Working, Converter={StaticResource InvertBoolConverter}}" SelectedIndex="{Binding SelectedResult}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn
+        DisplayMemberBinding="{Binding Title}"
+        Header="{Binding Converter={StaticResource LanguagePack},
+                                        ConverterParameter={StaticResource Dialog_GetTrackinfo_Track_Name}}" />
+                        <GridViewColumn
+        DisplayMemberBinding="{Binding Album}"
+        Header="{Binding Converter={StaticResource LanguagePack}, ConverterParameter={StaticResource Dialog_GetTrackinfo_Track_Album}}" />
+                        <GridViewColumn
+        DisplayMemberBinding="{Binding Artist}"
+        Header="{Binding Converter={StaticResource LanguagePack},
+                                        ConverterParameter={StaticResource Dialog_GetTrackinfo_Track_Artist}}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
+    </Grid>
+</UserControl>

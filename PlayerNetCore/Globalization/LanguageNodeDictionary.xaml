@@ -1,0 +1,37 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+    <sys:String x:Key="Main_Header_Home">player.home.header</sys:String>
+    <sys:String x:Key="Action_Play">action.play</sys:String>
+    <sys:String x:Key="Playable_UnknownTitle">#[playable.unknown] [playable.title]</sys:String>
+    <sys:String x:Key="Playable_UnknownArtist">#[playable.unknown] [playable.artist]</sys:String>
+    <sys:String x:Key="Playable_UnknownAlbum">#[playable.unknown] [playable.album]</sys:String>
+    <sys:String x:Key="Playlist_Header">playlist.header</sys:String>
+    <sys:String x:Key="Playlist_Create">playlist.create</sys:String>
+    <sys:String x:Key="Playlist_NowPlaying">playlist.nowplaying</sys:String>
+    <sys:String x:Key="Player_Shuffle">player.shuffle</sys:String>
+    <sys:String x:Key="Player_Repeat">player.repeat</sys:String>
+    <sys:String x:Key="Player_Dropheretoplay">player.dropheretoplay</sys:String>
+    <sys:String x:Key="Player_PrevSong">player.prevsong</sys:String>
+    <sys:String x:Key="Player_NextSong">player.nextsong</sys:String>
+    <sys:String x:Key="Player_Mute">player.mute</sys:String>
+    <sys:String x:Key="Player_Volume">player.volume</sys:String>
+    <sys:String x:Key="Program_Header">program.header</sys:String>
+    <sys:String x:Key="Program_Version">program.version</sys:String>
+    <sys:String x:Key="Dialog_GetTrackinfo_Header">dialog.gettrackinfo.header</sys:String>
+    <sys:String x:Key="Dialog_GetTrackinfo_Database_Source">dialog.gettrackinfo.database_source</sys:String>
+    <sys:String x:Key="Dialog_GetTrackinfo_Track_Name">dialog.gettrackinfo.track_name</sys:String>
+    <sys:String x:Key="Dialog_GetTrackinfo_Track_Artist">dialog.gettrackinfo.track_artist</sys:String>
+    <sys:String x:Key="Dialog_GetTrackinfo_Track_Album">dialog.gettrackinfo.track_album</sys:String>
+    <sys:String x:Key="Dialog_GetTrackinfo_Write_To_File">dialog.gettrackinfo.write_to_file</sys:String>
+    <sys:String x:Key="Common_Selected">#[common.selected]: %</sys:String>
+    <sys:String x:Key="TrackCount">#% [common.tracks].</sys:String>
+    <sys:String x:Key="Common_Search">common.search</sys:String>
+    <sys:String x:Key="Common_OK">common.ok</sys:String>
+    <sys:String x:Key="Common_Cancel">common.cancel</sys:String>
+    <sys:String x:Key="Common_Close">common.close</sys:String>
+    <sys:String x:Key="Common_Delete">common.delete</sys:String>
+    <sys:String x:Key="Common_Rename">common.rename</sys:String>
+    <sys:String x:Key="Common_Open">common.open</sys:String>
+    <sys:String x:Key="Common_ExplorerTo">common.explorerto</sys:String>
+</ResourceDictionary>

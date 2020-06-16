@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayerNetCore", "PlayerNetCore\PlayerNetCore.csproj", "{936AF839-FF84-4AE1-AFB5-9CDA16917FB8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{163E5C28-D085-4005-AF94-F66E331E979E}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialDesignThemes.Wpf", "..\..\MaterialDesignInXamlToolkit-master\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj", "{829F5312-6143-47F9-B11C-C90CF7BE0F75}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AMD64 = Debug|AMD64
+		Debug|Any CPU = Debug|Any CPU
+		Debug|WIN32 = Debug|WIN32
+		Release|AMD64 = Release|AMD64
+		Release|Any CPU = Release|Any CPU
+		Release|WIN32 = Release|WIN32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{936AF839-FF84-4AE1-AFB5-9CDA16917FB8}.Debug|AMD64.ActiveCfg = Debug|x64
+		{936AF839-FF84-4AE1-AFB5-9CDA16917FB8}.Debug|AMD64.Build.0 = Debug|x64
+		{936AF839-FF84-4AE1-AFB5-9CDA16917FB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{936AF839-FF84-4AE1-AFB5-9CDA16917FB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{936AF839-FF84-4AE1-AFB5-9CDA16917FB8}.Debug|WIN32.ActiveCfg = Debug|x86
+		{936AF839-FF84-4AE1-AFB5-9CDA16917FB8}.Debug|WIN32.Build.0 = Debug|x86
+		{936AF839-FF84-4AE1-AFB5-9CDA16917FB8}.Release|AMD64.ActiveCfg = Release|x64
+		{936AF839-FF84-4AE1-AFB5-9CDA16917FB8}.Release|AMD64.Build.0 = Release|x64
+		{936AF839-FF84-4AE1-AFB5-9CDA16917FB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{936AF839-FF84-4AE1-AFB5-9CDA16917FB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{936AF839-FF84-4AE1-AFB5-9CDA16917FB8}.Release|WIN32.ActiveCfg = Release|x86
+		{936AF839-FF84-4AE1-AFB5-9CDA16917FB8}.Release|WIN32.Build.0 = Release|x86
+		{829F5312-6143-47F9-B11C-C90CF7BE0F75}.Debug|AMD64.ActiveCfg = Debug|Any CPU
+		{829F5312-6143-47F9-B11C-C90CF7BE0F75}.Debug|AMD64.Build.0 = Debug|Any CPU
+		{829F5312-6143-47F9-B11C-C90CF7BE0F75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{829F5312-6143-47F9-B11C-C90CF7BE0F75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{829F5312-6143-47F9-B11C-C90CF7BE0F75}.Debug|WIN32.ActiveCfg = Debug|Any CPU
+		{829F5312-6143-47F9-B11C-C90CF7BE0F75}.Debug|WIN32.Build.0 = Debug|Any CPU
+		{829F5312-6143-47F9-B11C-C90CF7BE0F75}.Release|AMD64.ActiveCfg = Release|Any CPU
+		{829F5312-6143-47F9-B11C-C90CF7BE0F75}.Release|AMD64.Build.0 = Release|Any CPU
+		{829F5312-6143-47F9-B11C-C90CF7BE0F75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{829F5312-6143-47F9-B11C-C90CF7BE0F75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{829F5312-6143-47F9-B11C-C90CF7BE0F75}.Release|WIN32.ActiveCfg = Release|Any CPU
+		{829F5312-6143-47F9-B11C-C90CF7BE0F75}.Release|WIN32.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21E986BF-202C-48CF-8837-E90398D41B9C}
+	EndGlobalSection
+EndGlobal

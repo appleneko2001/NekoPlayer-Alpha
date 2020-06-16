@@ -1,0 +1,175 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>NekoPlayer.NetCore</AssemblyName>
+    <RootNamespace>NekoPlayer</RootNamespace>
+    <Authors>github@appleneko2001</Authors>
+    <Company />
+    <Product>NekoPlayer Alpha</Product>
+    <Description>A music player with Material Design WPF UI Framework.
+Required dotNet Core 3 and Framework 4.6 at least on your Windows.</Description>
+    <Version>0.1.5</Version>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <StartupObject>PlayerNetCore.App</StartupObject>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <DelaySign>false</DelaySign>
+    <Platforms>AnyCPU;x86;x64</Platforms>
+    <ApplicationIcon>Wpf\Resources\Icon.ico</ApplicationIcon>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <Nullable>warnings</Nullable>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>re_appleneko2001.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>true</Prefer32Bit>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>true</Prefer32Bit>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>true</Prefer32Bit>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <Prefer32Bit>true</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+    <FileAlignment>2048</FileAlignment>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="NativeLibs\**" />
+    <EmbeddedResource Remove="NativeLibs\**" />
+    <None Remove="NativeLibs\**" />
+    <Page Remove="NativeLibs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Wpf\ModelViews\AlbumMaskedPlaylistModel.cs" />
+    <Compile Remove="Wpf\Widget\SegmentedBar.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Player.cs~RFc6db8a1.TMP" />
+    <None Remove="Resources\caches_empty.db" />
+    <None Remove="Wpf\Resources\Album_Default.png" />
+    <None Remove="Wpf\Resources\Icon.ico" />
+    <None Remove="Wpf\Resources\Recent_Playlist.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Wpf\Widget\SegmentedBar.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\caches_empty.db" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DialogAdapters" Version="0.1.7.28093" />
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" />
+    <PackageReference Include="linq2db" Version="2.9.4" />
+    <PackageReference Include="ManagedBass" Version="3.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="3.1.3" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="3.1.3" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
+    <PackageReference Include="NeteaseCloudMusicApi" Version="3.25.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-rc0001" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.112.2" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+    <PackageReference Include="taglib-sharp-netstandard2.0" Version="2.1.0" />
+    <PackageReference Include="ZeroFormatter" Version="1.6.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\MaterialDesignInXamlToolkit-master\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ImageResizer.LightResize.NetCore">
+      <HintPath>..\ImageResizer.LightResize.NetCore\bin\Release\netcoreapp3.1\ImageResizer.LightResize.NetCore.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Windows.Forms.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Wpf\Resources\Album_Default.png" />
+    <Resource Include="Wpf\Resources\Icon.ico" />
+    <Resource Include="Wpf\Resources\Recent_Playlist.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Globalization\LanguageNodeDictionary.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Wpf\CustomStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Wpf\DynamicFontStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Wpf\Widget\AlbumMaskedPlaylist.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Globalization\Readme.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy /Y &quot;$(ProjectDir)NativeLibs\Windows\$(PlatformName)\bass.dll&quot; &quot;$(TargetDir)bass.dll&quot;&#xD;&#xA;xcopy /Y /E /I &quot;$(ProjectDir)NativeLibs\Windows\$(PlatformName)\BassModules&quot; &quot;$(TargetDir)BassModules&quot;&#xD;&#xA;del &quot;$(TargetDir)Bass.Net.xml&quot;" />
+  </Target>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="set ERRORLEVEL=0&#xD;&#xA;rem taskkill /f /im $(TargetName).exe" />
+  </Target>
+
+</Project>

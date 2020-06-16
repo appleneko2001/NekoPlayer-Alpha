@@ -1,0 +1,77 @@
+﻿<Window x:Class="PlayerNetCore.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlayerNetCore"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:models="clr-namespace:NekoPlayer.Wpf.ModelViews"
+        xmlns:commands="clr-namespace:NekoPlayer.Wpf.Commands" xmlns:converters="clr-namespace:NekoPlayer.Wpf.Converters" xmlns:markupextensions="clr-namespace:NekoPlayer.Wpf.MarkupExtensions" xmlns:tb="http://www.hardcodet.net/taskbar"
+        mc:Ignorable="d"
+        Background="{DynamicResource MaterialDesignPaper}"
+        WindowStartupLocation="CenterScreen"
+        Icon="Wpf/Resources/Icon.ico"
+        Title="{Binding Converter={StaticResource LanguagePack}, ConverterParameter={StaticResource Program_Header}}" Height="500" Width="800" MinWidth="800" MinHeight="200" Closed="Window_Closed" Closing="Window_Closing" KeyDown="Window_KeyDown" >
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static commands:MainWindowCommands.LeftDrawerButtonPress}" CanExecute="LDButton_CanExecute" Executed="LDButton_Executed" />
+    </Window.CommandBindings>
+    <md:DialogHost DialogTheme="Inherit" CloseOnClickAway="True" Focusable="False">
+        <md:DrawerHost IsLeftDrawerOpen="{Binding ElementName=LeftDrawerSwitch,Path=IsChecked}">
+            <md:DrawerHost.InputBindings>
+                <KeyBinding Key="Esc" Command="{x:Static md:DrawerHost.CloseDrawerCommand}"/>
+            </md:DrawerHost.InputBindings>
+            <md:DrawerHost.LeftDrawerContent>
+                <StackPanel MinWidth="320">
+                    <Grid Height="200" IsEnabled="False" Visibility="Hidden">
+                    </Grid>
+                    <Button Style="{StaticResource FlatButton}" HorizontalContentAlignment="Left" Click="Button_Click" >
+                        <TextBlock Style="{StaticResource DefaultTextBlock}" Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0}: {1}">
+                                    <Binding Converter="{StaticResource LanguagePack}" ConverterParameter="{StaticResource Program_Version}"/>
+                                    <Binding Source="{markupextensions:GetAppVersion}"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </Button>
+                    <ItemsControl ItemsSource="{Binding DrawerMenus}" Focusable="False">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type models:DrawerMenuItemView}">
+                                <Button Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Stretch" 
+                                        HorizontalContentAlignment="Left" Tag="{Binding Tag}" ToolTip="{Binding Hint}" Height="48"
+                                        Command="{x:Static commands:MainWindowCommands.LeftDrawerButtonPress}" CommandParameter="{Binding Tag}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <md:PackIcon Kind="{Binding Icon}" Margin="2,0" VerticalAlignment="Center"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="0" Padding="2,0" Text="{Binding Text}"/>
+                                    </StackPanel>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </md:DrawerHost.LeftDrawerContent>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="56"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <md:Transitioner Grid.Row="1" ItemsSource="{Binding DrawerMenus}" SelectedIndex="{Binding SelectedIndex, Mode=OneWay}"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                                 VerticalContentAlignment="Stretch" Focusable="False" >
+                    <md:Transitioner.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:DrawerMenuItemView}">
+                            <ContentPresenter  Content="{Binding WindowContent}"/>
+                        </DataTemplate>
+                    </md:Transitioner.ItemTemplate>
+                </md:Transitioner>
+                <md:ColorZone MinHeight="56" DockPanel.Dock="Top" md:ShadowAssist.ShadowDepth="Depth2" Focusable="False" Padding="0">
+                    <DockPanel>
+                        <ToggleButton x:Name="LeftDrawerSwitch" Style="{StaticResource FlatToggleButton}" Content="{md:PackIcon Kind=Menu, Size=24}" Padding="4"
+                                      Width="32" Margin="16,8" Height="32" Foreground="{DynamicResource  MaterialDesignBodyLight}" IsChecked="True" />
+                        <ContentControl Content="{Binding HeaderContext}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Focusable="False"/>
+                    </DockPanel>
+                </md:ColorZone>
+            </Grid>
+        </md:DrawerHost>
+    </md:DialogHost>
+</Window>

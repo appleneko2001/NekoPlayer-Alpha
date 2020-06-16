@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="NekoPlayer.Pages.SettingsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NekoPlayer.Pages" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:itemscontrolviews="clr-namespace:NekoPlayer.Wpf.ItemsControlViews"
+             mc:Ignorable="d" 
+             xmlns:converters="clr-namespace:NekoPlayer.Wpf.Converters"
+             d:DesignHeight="450" d:DesignWidth="1200">
+    <ScrollViewer Background="Transparent" x:Name="Root">
+        <StackPanel>
+            <!--materialDesign:Card MaxWidth="800" Margin="32"-->
+            <ItemsControl ItemsSource="{Binding Menus}" Focusable="False"  ItemTemplateSelector="{StaticResource ControlTemplateSelector}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Margin="0,24"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+            <!--/-->
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

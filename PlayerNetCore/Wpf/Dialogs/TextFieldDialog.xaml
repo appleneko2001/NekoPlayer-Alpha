@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="NekoPlayer.Wpf.Dialogs.TextFieldDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NekoPlayer.Wpf.Dialogs" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:system="clr-namespace:System;assembly=System.Runtime" xmlns:validationrules="clr-namespace:NekoPlayer.Wpf.ValidationRules"
+             mc:Ignorable="d" 
+             DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+    <materialDesign:Card Width="400">
+        <Grid FocusManager.FocusedElement="{Binding ElementName=TextField}">
+            <Grid.InputBindings>
+                <KeyBinding Key="Esc" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="False"/>
+                <KeyBinding Key="Return" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="True"/>
+            </Grid.InputBindings>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="48"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="TextField" Grid.Row="1" Margin="16,8" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Hint"
+                     AcceptsReturn="False" AcceptsTab="False" >
+                <TextBox.Text>
+                    <Binding Path="Text" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules >
+                            <validationrules:ValidationNameRule ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBlock Text="{Binding Header, FallbackValue=Error}" Style="{StaticResource Body1TextBlock}" Margin="24,6" VerticalAlignment="Bottom"/>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource FlatButton}" Margin="8,0" Content="{Binding Converter={StaticResource LanguagePack}, ConverterParameter={StaticResource Common_OK}}" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="True"
+                        IsEnabled="{Binding ElementName=TextField, Path=(Validation.HasError), Converter={StaticResource InverseBoolean}}" Focusable="False"/>
+                <Button Style="{StaticResource FlatButton}" Margin="8,0" Content="{Binding Converter={StaticResource LanguagePack}, ConverterParameter={StaticResource Common_Cancel}}" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="False"
+                        Focusable="False"/>
+            </StackPanel>
+
+        </Grid>
+    </materialDesign:Card>
+</UserControl>
