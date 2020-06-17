@@ -1,7 +1,7 @@
 # NekoPlayer Alpha
-## ! Project still incomplete and unstable, could be use QT instead !
+## ! Project still incomplete and unstable, could be use QT & C++ instead on future updates !
 
-An music player with Material design. 
+An WPF music player with Material design. 
 UI are referenced from Google Play music.
 
 ## Features
@@ -35,7 +35,7 @@ UI are referenced from Google Play music.
 ## Known issues
 - Wastes RAM while image processing (downsize)
 - Sometimes could be buggy
-- Smoothless by animation of transitioner
+- Smoothless by animation of transitioner (Recommend use Release build option instead could be much better)
 - Seek will lose while choose device and Allow Full-Buffering are activated
 
 ## Used library on this project
