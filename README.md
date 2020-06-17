@@ -40,7 +40,7 @@ UI are referenced from Google Play music.
 - Seek will lose while choose device and Allow Full-Buffering are activated
 - Key binding are unavailable while iTunes are running
 
-## Used library on this project
+## Used libraries on this project
 - [Bass](http://www.un4seen.com/bass.html), [ManagedBass](https://github.com/ManagedBass/ManagedBass) (Core of audio player, on older version of this project are used Bass.Net but for some reasons I used ManagedBass instead. I'm so sorry about betray Bass.Net library)
 - [SixLabors.ImageSharp](https://sixlabors.com/products/imagesharp/) (Cover image processing)
 - [Linq2DB](https://linq2db.github.io/) (Cache Management)
