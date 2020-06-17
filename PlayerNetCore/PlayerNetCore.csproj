@@ -110,13 +110,10 @@ Required dotNet Core 3 and Framework 4.6 at least on your Windows.</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\MaterialDesignInXamlToolkit-master\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj" />
+    <ProjectReference Include="..\..\MaterialDesignInXaml-Mod\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="ImageResizer.LightResize.NetCore">
-      <HintPath>..\ImageResizer.LightResize.NetCore\bin\Release\netcoreapp3.1\ImageResizer.LightResize.NetCore.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Forms">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Windows.Forms.dll</HintPath>
     </Reference>
