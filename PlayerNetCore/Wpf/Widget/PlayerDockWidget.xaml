@@ -187,8 +187,8 @@
                                 <ListView.View>
                                     <GridView ColumnHeaderContainerStyle="{StaticResource disabledColumn}">
                                         <!--{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListView}, Converter={StaticResource ListViewStarWidth}}-->
-                                        <GridViewColumn Width="50" Header="#" CellTemplate="{StaticResource cellRow1}"/>
-                                        <GridViewColumn Width="NaN" CellTemplate="{StaticResource cellRow2}" >
+                                        <GridViewColumn Width="50" Header="#" CellTemplate="{StaticResource MediaListCellRow1}"/>
+                                        <GridViewColumn Width="NaN" CellTemplate="{StaticResource MediaListCellRow2}" >
                                             <GridViewColumn.Header >
                                                 <TextBlock Tag="Fill" Text="Tracks"/>
                                             </GridViewColumn.Header>

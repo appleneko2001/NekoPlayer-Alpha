@@ -107,7 +107,31 @@
                     </StackPanel>
                 </materialDesign:Card>
             </DataTemplate>
-
+            <DataTemplate x:Key="MediaListCellRow1">
+                <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <TextBlock Text="{Binding TrackInfo.TrackId}" VerticalAlignment="Stretch" HorizontalAlignment="Left"/>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="MediaListCellRow2" >
+                <StackPanel>
+                    <TextBlock Text="{Binding Title}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Subtitle1TextBlock}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=Ready}" Value="False">
+                                        <Setter Property="Foreground" Value="Red"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Path=Ready}" Value="True">
+                                        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock Text="{Binding TrackInfo.Album}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"  Style="{StaticResource OverlineTextBlock}"/>
+                    <TextBlock Text="{Binding Artist}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"  Style="{StaticResource OverlineTextBlock}"/>
+                </StackPanel>
+            </DataTemplate>
             <ContextMenu x:Key="MenuOnTrayIcon">
                 <MenuItem Header="Show window" Command="{x:Static local:App.ShowWindowCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=DataContext}"/>
                 <MenuItem Header="Exit" Command="{x:Static local:App.ShutdownCommand}"/>

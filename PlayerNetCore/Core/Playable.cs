@@ -6,6 +6,7 @@ using System.Globalization;
 using System.IO;
 using System.Windows.Controls.Primitives;
 
+#pragma warning disable CA1031
 namespace NekoPlayer.Core
 {
     /// <summary>
@@ -21,8 +22,7 @@ namespace NekoPlayer.Core
         public Playable(string filePath)
         {
             path = filePath;
-            if (File.Exists(filePath))
-                Load();
+            Load();
         }
         #endregion
         public static bool TryCreate(string filePath, out Playable result)
@@ -65,10 +65,11 @@ namespace NekoPlayer.Core
             }
             catch (Exception e)
             {
+                FaultReason = e.Message;
                 ExceptMessage.PrintConsole(3, $"An error occurred when loading media: {e.Message}\r\n{e.StackTrace}\r\nMedia will unavailable until media is returned to online state (Is ready to playback).");
-                Ready = false;
-                return false;
             }
+            Ready = false;
+            return false;
         }
         public BassFileStream GetStream()
         {
@@ -86,6 +87,8 @@ namespace NekoPlayer.Core
         public FileProcedures GetBassStream() => GetStream().GetBassFileController();
         public PlayableSource GetPlayableSourceFlag() => PlayableSource.Local;
         public bool IsLocalMedia => File.Exists(GetMediaPath());
+        public string Title { get { return TrackInfo?.Title ?? ToString(); } }
+        public string Artist { get { return TrackInfo?.Artist ?? FaultReason; } }
         #endregion
         public void Close(bool completelyDispose = false)
         {
@@ -131,6 +134,8 @@ namespace NekoPlayer.Core
         }
         public TagInfo TrackInfo { get; private set; }
         public bool Ready { get; private set; }
+         
+        public string FaultReason { get; private set; }
         #endregion
         #region Private variables
         private bool disposed = false;
@@ -142,7 +147,7 @@ namespace NekoPlayer.Core
         public override string ToString()
         {
             if (TrackInfo is null)
-                return $"Offline: {path}";
+                return $"{path}";
             return $"Track: {TrackInfo.Title} ({path})";
         }
 
@@ -151,5 +156,11 @@ namespace NekoPlayer.Core
             Ready = !v;
             OnPropertyChanged(nameof(Ready));
         }
+
+        public void CheckStatus()
+        {
+            Load();
+        }
     }
 }
+#pragma warning restore CA1031

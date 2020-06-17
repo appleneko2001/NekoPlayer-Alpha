@@ -156,6 +156,24 @@ namespace NekoPlayer.VersionInfos
     /// </summary>
     public static class VersionInfo
     {
+        public static ChangelogInfo CurrentVersion { get; } = new ChangelogInfo(() => "2020.06.17_Alpha", () => new List<IUpdateChangesInfo>()
+        {
+            new ImproveFeature("Slightly changes code of playable class to support show reason of no access file and check status manually."),
+        });
+        /// <summary>
+        /// Incomplete method.
+        /// </summary>
+        public static void LoadOldChangelogs()
+        {
+
+        }
+        public static void DoOptimize()
+        {
+            CurrentVersion.GarbageCollect(true);
+        }
+        /*
+         * Old changelogs.
+         * 
         public static ChangelogInfo CurrentVersion { get; } = new ChangelogInfo(() => "2020.06.16_Alpha", () => new List<IUpdateChangesInfo>()
         {
             new AddedFeature("Cache management (Show usage and clear)."),
@@ -183,20 +201,6 @@ namespace NekoPlayer.VersionInfos
             new HintInfoFeature("Program barely working without smooth movement because transitioner are too laggy, could be fixed on QT version (Future updates)."),
             new HintInfoFeature("The stupid BUG Master are creating bugs again, now we fixed some minor bugs (Features working abnormally). We still have much work and challenges to do for improving experiences.")
         });
-        /// <summary>
-        /// Incomplete method.
-        /// </summary>
-        public static void LoadOldChangelogs()
-        {
-
-        }
-        public static void DoOptimize()
-        {
-            CurrentVersion.GarbageCollect(true);
-        }
-        /*
-         * Old changelogs.
-         * 
         public static ChangelogInfo 2020.05.07_Alpha { get; } = new ChangelogInfo(() => "2020.05.07_Alpha", () => new List<IUpdateChangesInfo>()
         {
             new AddedFeature("Maximize album picture by place cursor to the image widget."),

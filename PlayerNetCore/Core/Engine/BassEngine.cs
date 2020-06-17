@@ -237,6 +237,8 @@ namespace NekoPlayer.Core.Engine
         {
             try
             {
+                if (file != null || !file.Ready)
+                    file.CheckStatus();
                 if (file is null || !file.Ready || file.MediaFormat == Appleneko2001.AudioHeaderData.Unsupported || file.MediaFormat == Appleneko2001.AudioHeaderData.Error)
                     throw new ArgumentNullException(nameof(file));
                 if (mediaisLoaded)

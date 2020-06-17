@@ -22,11 +22,15 @@ namespace NekoPlayer.Core
         public string GetMediaPath();
         public PlayableSource GetPlayableSourceFlag();
         public void Close(bool completelyDispose = false);
+        public void CheckStatus();
         public bool IsLocalMedia { get; }
         public bool Ready { get; }
         public void SetCorruptedState(bool v);
         public AudioHeaderData MediaFormat { get; }
         public TimeSpan Duration { get; }
         public TagInfo TrackInfo { get; }
+        public string Title { get; }
+        public string Artist { get; }
+        public string FaultReason { get; }
     }
 }
