@@ -21,10 +21,11 @@ UI are referenced from Google Play music.
 * Auto-save changes of playlist after close window or add/delete items on playlist
 
 ## Compile
-> For compile you need .Net Core 3.0, MaterialDesignInXAML (Modified) and Visual Studio 2019
+> For compile and run this project you need [.Net Core 3.0 SDK and Desktop Runtime](https://dotnet.microsoft.com/download/dotnet-core/3.0), [MaterialDesignInXAML (Modified)](https://github.com/appleneko2001/MaterialDesignInXaml-Mod) and [Visual Studio 2019](https://visualstudio.microsoft.com)
+- Install all requirements if you haven't them 
 - Download this repository and modded MaterialDesign toolkit and unpack it both
 - Open solution file by Visual Studio 2019
-- Remove old MaterialDesignInXAML project and re-add unpacked toolkit project
+- Remove old MaterialDesignInXAML project reference and add it again to correct path of toolkit
 - Select Release solution configuration and Run (or Compile)
 
 ## How to use
@@ -37,15 +38,16 @@ UI are referenced from Google Play music.
 - Sometimes could be buggy
 - Smoothless by animation of transitioner (Recommend use Release build option instead could be much better)
 - Seek will lose while choose device and Allow Full-Buffering are activated
+- Key binding are unavailable while iTunes are running
 
 ## Used library on this project
-- Bass, ManagedBass (Core of audio player, on older version of this project are used Bass.Net but for some reasons I used ManagedBass instead. I'm so sorry about betray Bass.Net library)
-- SixLabors.ImageSharp (Cover image processing)
-- Linq2DB (Cache Management)
-- DialogAdapters (Dialogs, could deprecated on future updates)
-- NeteaseCloudMusicApi (NCMApi Provider)
-- taglib-sharp (Load track informations)
-- ZeroFormatter (Serialize/Deserialize object, could deprecated on future updates)
-- Newtonsoft.Json (Serialize/Deserialize JSON object)
-- MaterialDesignInXAML (Wpf Styles)
-- Hardcodet.Wpf.TaskbarNotification (System-tray on WPF)
+- [Bass](http://www.un4seen.com/bass.html), [ManagedBass](https://github.com/ManagedBass/ManagedBass) (Core of audio player, on older version of this project are used Bass.Net but for some reasons I used ManagedBass instead. I'm so sorry about betray Bass.Net library)
+- [SixLabors.ImageSharp](https://sixlabors.com/products/imagesharp/) (Cover image processing)
+- [Linq2DB](https://linq2db.github.io/) (Cache Management)
+- [DialogAdapters](https://www.nuget.org/packages/DialogAdapters/) (Dialogs, could deprecated on future updates)
+- [NeteaseCloudMusicApi](https://github.com/wwh1004/NeteaseCloudMusicApi) (NCMApi Provider)
+- [taglib-sharp](https://github.com/mono/taglib-sharp) (Load track informations)
+- [ZeroFormatter](https://github.com/neuecc/ZeroFormatter) (Serialize/Deserialize object, could deprecated on future updates)
+- [Newtonsoft.Json](https://www.newtonsoft.com/json) (Serialize/Deserialize JSON object)
+- [MaterialDesignInXAML](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit) (Wpf Styles)
+- [Hardcodet.Wpf.TaskbarNotification](http://www.hardcodet.net/wpf-notifyicon) (System-tray on WPF)
