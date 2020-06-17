@@ -1,5 +1,6 @@
 ﻿using Appleneko2001;
 using DialogAdapters;
+using ManagedBass;
 using MaterialDesignThemes.Wpf;
 using NekoPlayer.Core;
 using NekoPlayer.Core.Engine;
@@ -268,9 +269,9 @@ namespace NekoPlayer
             context.SetNowPlaying(e.Playable);
         }
 
-        private static void Engine_OnLoadErrorTrack(object sender, IPlayable args)
+        private static void Engine_OnLoadErrorTrack(object sender, Tuple<IPlayable, BassException> args)
         {
-            args.SetCorruptedState(true);
+            args.Item1.SetCorruptedState(true,args.Item2); 
         }
 
         private static void Engine_OnRequestNextTrack(object sender, EventArgs e)

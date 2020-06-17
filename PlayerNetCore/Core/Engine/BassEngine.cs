@@ -112,7 +112,7 @@ namespace NekoPlayer.Core.Engine
         public event EventHandler OnStoppedPlay;
         public event EventHandler OnLoadTrack;
         public event EventHandler<BassMediaInfo> OnLoadedTrack;
-        public event EventHandler<IPlayable> OnLoadErrorTrack;
+        public event EventHandler<Tuple<IPlayable, BassException>> OnLoadErrorTrack;
         public event EventHandler OnRequestNextTrack;
         public event EventHandler<BitmapSource> OnReceiveCover;
         #endregion
@@ -246,8 +246,9 @@ namespace NekoPlayer.Core.Engine
                     Unload();
                 }
                 var cover = file.TrackInfo.AlbumImage;
-                bool AllowFullBuffered = SettingsManager.GetValue<bool>("FullBufferedRead", false);
-                var channelId = Bass.CreateStream(AllowFullBuffered ? StreamSystem.Buffer : StreamSystem.NoBuffer, BassFlags.Default, file.GetBassStream());//(AllowFullBuffered ? BASSStreamSystem.STREAMFILE_BUFFER : BASSStreamSystem.STREAMFILE_NOBUFFER, BASSFlag.BASS_DEFAULT, file.GetBassStream(), IntPtr.Zero);
+                bool AllowFullBuffered = SettingsManager.GetValue<bool>("FullBufferedRead", false); 
+                var channelId = Bass.CreateStream(AllowFullBuffered ? StreamSystem.Buffer : StreamSystem.NoBuffer, BassFlags.Default, file.GetBassStream());
+                //(AllowFullBuffered ? BASSStreamSystem.STREAMFILE_BUFFER : BASSStreamSystem.STREAMFILE_NOBUFFER, BASSFlag.BASS_DEFAULT, file.GetBassStream(), IntPtr.Zero);
                 if (channelId != BASS_STREAM_NULL)
                 {
                     mediaisLoaded = true;
@@ -263,9 +264,10 @@ namespace NekoPlayer.Core.Engine
                     throw new BassException();
                 }
             }
-            catch (BassException)
+            catch (BassException e)
             {
-                OnLoadErrorTrack?.Invoke(this, file);
+                ExceptMessage.PrintConsole(e);
+                OnLoadErrorTrack?.Invoke(this, new Tuple<IPlayable, BassException>(file, e));
             }
             catch (Exception e)
             {
@@ -438,7 +440,9 @@ namespace NekoPlayer.Core.Engine
             {
                 try
                 {
-                    LoadedPlugins.Add(plugin, Bass.PluginLoad(System.IO.Path.Combine(path, plugin + ".dll")));
+                    var id = Bass.PluginLoad(System.IO.Path.Combine(path, plugin + ".dll"));
+                    var info = Bass.PluginGetInfo(id);
+                    LoadedPlugins.Add(plugin, id);
                 }
                 catch (Exception e)
                 {

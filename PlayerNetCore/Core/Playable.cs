@@ -87,8 +87,7 @@ namespace NekoPlayer.Core
         public FileProcedures GetBassStream() => GetStream().GetBassFileController();
         public PlayableSource GetPlayableSourceFlag() => PlayableSource.Local;
         public bool IsLocalMedia => File.Exists(GetMediaPath());
-        public string Title { get { return TrackInfo?.Title ?? ToString(); } }
-        public string Artist { get { return TrackInfo?.Artist ?? FaultReason; } }
+        public string Title { get { m_Title = (TrackInfo?.Title ?? ToString()) + (Ready ? "" : $" ({FaultReason})"); return m_Title; } } 
         #endregion
         public void Close(bool completelyDispose = false)
         {
@@ -142,6 +141,7 @@ namespace NekoPlayer.Core
         private BassFileStream stream;
         private string hash;
         private string path;
+        private string m_Title;
         #endregion
 
         public override string ToString()
@@ -151,9 +151,14 @@ namespace NekoPlayer.Core
             return $"Track: {TrackInfo.Title} ({path})";
         }
 
-        public void SetCorruptedState(bool v)
+        public void SetCorruptedState(bool v, BassException errorInfo)
         {
             Ready = !v;
+            if (errorInfo != null)
+            {
+                FaultReason = errorInfo.Message;
+                OnPropertyChanged(nameof(Title));
+            }
             OnPropertyChanged(nameof(Ready));
         }
 

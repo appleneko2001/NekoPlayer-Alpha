@@ -25,12 +25,11 @@ namespace NekoPlayer.Core
         public void CheckStatus();
         public bool IsLocalMedia { get; }
         public bool Ready { get; }
-        public void SetCorruptedState(bool v);
+        public void SetCorruptedState(bool v, BassException errorInfo);
         public AudioHeaderData MediaFormat { get; }
         public TimeSpan Duration { get; }
         public TagInfo TrackInfo { get; }
-        public string Title { get; }
-        public string Artist { get; }
+        public string Title { get; } 
         public string FaultReason { get; }
     }
 }

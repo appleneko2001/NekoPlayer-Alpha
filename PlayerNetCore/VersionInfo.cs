@@ -156,9 +156,11 @@ namespace NekoPlayer.VersionInfos
     /// </summary>
     public static class VersionInfo
     {
-        public static ChangelogInfo CurrentVersion { get; } = new ChangelogInfo(() => "2020.06.17_Alpha", () => new List<IUpdateChangesInfo>()
+        public static ChangelogInfo CurrentVersion { get; } = new ChangelogInfo(() => "2020.06.18_Alpha", () => new List<IUpdateChangesInfo>()
         {
-            new ImproveFeature("Slightly changes code of playable class to support show reason of no access file and check status manually."),
+            new ImproveFeature("Show reason of no access/error file style changes."),
+            new ImproveFeature("Pass error details from BassEngine to changes status playable."),
+            new BugFixes("Adds catch exception on codes of download cover to prevent crash."),
         });
         /// <summary>
         /// Incomplete method.

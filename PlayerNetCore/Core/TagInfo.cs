@@ -1,5 +1,6 @@
 ﻿using Appleneko2001; //Extensions
 using NekoPlayer.Containers;
+using NekoPlayer.Core.Utilities;
 using NekoPlayer.Networking;
 using NekoPlayer.Wpf.ModelViews;
 using System;
@@ -147,26 +148,33 @@ namespace NekoPlayer.Core
         }
         public async void DownloadAlbumIllust()
         {
-            using (WebClient wc = new WebClient())
+            try
             {
-                var data = await wc.DownloadDataTaskAsync(NetworkLink_AlbumImage).ConfigureAwait(false);
-                if (SettingsManager.GetValue<bool>("DownsizeWhenGetCoverOnline", false))
+                using (WebClient wc = new WebClient())
                 {
-                    // Image resize technology by LightResize
-                    /*using (MemoryStream input = new MemoryStream(data))
+                    var data = await wc.DownloadDataTaskAsync(NetworkLink_AlbumImage).ConfigureAwait(false);
+                    if (SettingsManager.GetValue<bool>("DownsizeWhenGetCoverOnline", false))
                     {
-                        using (MemoryStream resized = new MemoryStream())
+                        // Image resize technology by LightResize
+                        /*using (MemoryStream input = new MemoryStream(data))
                         {
-                            Utils.ResizeBitmapByLightResize(input, resized);
-                            data = resized.GetBuffer();
-                        }
-                    }*/
-                    data = Utils.ResizeBitmap(data, 1000);//  SixLabors resize
+                            using (MemoryStream resized = new MemoryStream())
+                            {
+                                Utils.ResizeBitmapByLightResize(input, resized);
+                                data = resized.GetBuffer();
+                            }
+                        }*/
+                        data = Utils.ResizeBitmap(data, 1000);//  SixLabors resize
+                    }
+                    CacheManager.PushImageCache(songId == null ? 0 : songId.Value, albumImageId ?? 0, NetworkLink_AlbumImage, data);
+                    data = Array.Empty<byte>();
+                    NotifyUpdate("AlbumImage");
+                    GlobalViewModel.GetInstance().NotifyCoverUpdate(); // In any cases we will refresh the states cover on player dock
                 }
-                CacheManager.PushImageCache(songId == null ? 0 : songId.Value, albumImageId ?? 0, NetworkLink_AlbumImage, data);
-                data = null;
-                NotifyUpdate("AlbumImage");
-                GlobalViewModel.GetInstance().NotifyCoverUpdate(); // In any cases we will refresh the states cover on player dock
+            }
+            catch(Exception e)
+            {
+                ExceptMessage.PrintConsole(e);
             }
             GC.Collect();
         }

@@ -129,7 +129,7 @@
                         </TextBlock.Style>
                     </TextBlock>
                     <TextBlock Text="{Binding TrackInfo.Album}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"  Style="{StaticResource OverlineTextBlock}"/>
-                    <TextBlock Text="{Binding Artist}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"  Style="{StaticResource OverlineTextBlock}"/>
+                    <TextBlock Text="{Binding TrackInfo.Artist}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"  Style="{StaticResource OverlineTextBlock}"/>
                 </StackPanel>
             </DataTemplate>
             <ContextMenu x:Key="MenuOnTrayIcon">
